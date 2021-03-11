@@ -1,35 +1,48 @@
 // vi: ft=vlang
 module vtpcache
 
-import os { getenv, join_path, mkdir_all, write_file }
+import os
 
 
 pub struct TCatalog {
-	location  string = getenv('HOME')
+	location  string = os.getenv('HOME')
 	name      string = '.vtpcache'
 	default_term i64 = 15000
 }
 
 fn (c TCatalog) get_path() string {
-	return join_path(c.location, c.name)
+	return os.join_path(c.location, c.name)
+}
+
+fn (c TCatalog) get_fpath(name string) string {
+	return os.join_path(c.get_path(), name)
+}
+
+fn (c TCatalog) exists(key string) bool {
+	return os.exists(c.get_fpath(key))
 }
 
 fn (c TCatalog) init() {
 	p := c.get_path()
 
-	mkdir_all(p) or {
-		die('could not initialize catalog at path "$p"')
+	os.mkdir_all(p) or {
+		panic('vtpcache: could not initialize catalog at path "$p"')
 	}
 }
 
-fn (c TCatalog) read() string {
-	return ''
+fn (c TCatalog) read(filename string) []string {
+	p := c.get_fpath(filename)
+
+	l := os.read_lines(p) or {
+		panic('vtpcache: could not read file at "$p"')
+	}
+	return l
 }
 
 fn (c TCatalog) write(filename string, content string) {
-	f := join_path(c.get_path(), filename)
+	p := c.get_fpath(filename)
 
-	write_file(f, content) or {
-		die('could not write file at path "$f"')
+	os.write_file(p, content) or {
+		panic('vtpcache: could not write file at path "$p"')
 	}
 }
