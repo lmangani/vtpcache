@@ -16,5 +16,6 @@ pub fn (m TMiddleman) put(lease TLease) {
 		term = lease.expire_in
 	}
 
-	println(term)
+	lease_signature, lease_will_expire_at := lease.sign()
+	m.catalog.write(lease_signature, '${lease_will_expire_at}\n${lease.content}')
 }
