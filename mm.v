@@ -6,16 +6,33 @@ struct TMiddleman {
 	catalog TCatalog
 }
 
-pub fn (m TMiddleman) put(lease TLease) {
-	mut term := m.catalog.default_term
-	if lease.expire_in < 0 {
-		panic('lease term cannot be a negative number')
+pub fn (m TMiddleman) retrieve(key string) TLease {
+	keyr := repr(key)
+
+	if !m.catalog.exists(keyr) {
+		return TLease{
+			key: key,
+			content: ''
+		}
 	}
 
+	docl := m.catalog.read(keyr)
+
+	return TLease{
+		key: key,
+		content:     docl[1..].join('')
+		expire_time: docl[0].u64()
+	}
+}
+
+pub fn (m TMiddleman) renew(mut lease TLease, content string) {
+	mut term := m.catalog.default_term
 	if lease.expire_in > 1 {
 		term = lease.expire_in
 	}
 
-	lease_signature, lease_will_expire_at := lease.sign()
-	m.catalog.write(lease_signature, '${lease_will_expire_at}\n${lease.content}')
+	lease_signature := lease.sign()
+	lease_document  := '${lease.expire_time}\n${content}'
+
+	m.catalog.write(lease_signature, lease_document)
 }
