@@ -4,4 +4,7 @@ V = v
 LFLAGS = -shared -prod
 
 build:
-	$(V) $(LFLAGS) vtpcache.v
+	$(V) $(LFLAGS) .
+
+test:
+	$(V) test .
