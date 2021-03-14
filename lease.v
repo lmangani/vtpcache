@@ -31,17 +31,17 @@ pub fn (l TLease) is_expired() bool {
 	return now().unix_time_milli() > l.expire_time
 }
 
-pub fn (mut l TLease) must_expire_in(d Duration) {
+pub fn (mut l TLease) must_expire_in(d Duration) ? {
 	if d.milliseconds() < 1 {
-		panic('vtpcache: duration must be greater then or equal to 1 ms')
+		return error('vtpcache: duration must be greater then or equal to 1 ms')
 	}
 
 	l.expire_in = d
 }
 
-fn (mut l TLease) sign() string {
+fn (mut l TLease) sign() ?string {
 	if l.expire_in.milliseconds() == 0 {
-		panic('vtpcache: lease term not set')
+		return error('vtpcache: lease term not set')
 	}
 
 	l.expire_time = now().add(l.expire_in).unix_time_milli()

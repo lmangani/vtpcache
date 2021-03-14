@@ -22,27 +22,27 @@ fn (c TCatalog) exists(key string) bool {
 	return os.exists(c.get_fpath(key))
 }
 
-fn (c TCatalog) init() {
+fn (c TCatalog) init() ? {
 	p := c.get_path()
 
 	os.mkdir_all(p) or {
-		panic('vtpcache: could not initialize catalog at path "$p"')
+		return error('vtpcache: could not initialize catalog at path "$p"')
 	}
 }
 
-fn (c TCatalog) read(filename string) []string {
+fn (c TCatalog) read(filename string) ?[]string {
 	p := c.get_fpath(filename)
 
 	l := os.read_lines(p) or {
-		panic('vtpcache: could not read file at "$p"')
+		return error('vtpcache: could not read file at path "$p"')
 	}
 	return l
 }
 
-fn (c TCatalog) write(filename string, content string) {
+fn (c TCatalog) write(filename string, content string) ? {
 	p := c.get_fpath(filename)
 
 	os.write_file(p, content) or {
-		panic('vtpcache: could not write file at path "$p"')
+		return error('vtpcache: could not write file at path "$p"')
 	}
 }
