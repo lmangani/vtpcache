@@ -36,7 +36,11 @@
 
 ## Installation
 
-*TODO*
+Via VPM:
+
+```
+v install caiertl.vtpcache
+```
 
 
 ## Usage
