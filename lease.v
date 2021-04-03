@@ -1,4 +1,3 @@
-// vi: ft=vlang
 module vtpcache
 
 import crypto.md5 { hexhash }

@@ -1,4 +1,3 @@
-// vi: ft=vlang
 module vtpcache
 
 
