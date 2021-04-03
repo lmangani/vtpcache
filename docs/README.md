@@ -18,10 +18,10 @@
 [vlang]: https://vlang.io
 [example]: /example.v
 
-[travis-shield]: https://img.shields.io/travis/caian-org/vtpcache.svg?style=for-the-badge
+[travis-shield]: https://img.shields.io/travis/caian-org/vtpcache.svg?logo=travis-ci&logoColor=FFF&style=for-the-badge
 [travis-url]: https://travis-ci.org/caian-org/vtpcache
 
-[tag-shield]: https://img.shields.io/github/tag/caian-org/vtpcache.svg?style=for-the-badge
+[tag-shield]: https://img.shields.io/github/tag/caian-org/vtpcache.svg?logo=git&logoColor=FFF&style=for-the-badge
 [tag-url]: https://github.com/caian-org/vtpcache/releases
 
 
@@ -30,8 +30,8 @@
 - [Installation](#installation)
 - [Usage](#usage)
 - [How It Works?](#how-it-works)
-- [License](#license)
 - [Acknowledgements](#acknowledgements)
+- [License](#license)
 
 
 ## Installation
@@ -53,6 +53,16 @@ v install caiertl.vtpcache
 *TODO*
 
 
+## Acknowledgements
+
+Icons made by [Pause08][pause] from [Flaticon][flaticon] is
+licensed by [The Flaticon License][fl].
+
+[pause]: https://www.flaticon.com/authors/pause08
+[flaticon]: https://www.flaticon.com
+[fl]: https://www.freepikcompany.com/legal#nav-flaticon-agreement
+
+
 ## License
 
 [![Kopimi Logo][kopimi-logo]][kopimi-url]
@@ -70,13 +80,3 @@ whatever you like with this project! `^C ^V`
 
 [kopimi-logo]: https://gist.githubusercontent.com/xero/cbcd5c38b695004c848b73e5c1c0c779/raw/6b32899b0af238b17383d7a878a69a076139e72d/kopimi-sm.png
 [kopimi-url]: https://kopimi.com
-
-
-## Acknowledgements
-
-Icons made by [Pause08][pause] from [Flaticon][flaticon] is
-licensed by [The Flaticon License][fl].
-
-[pause]: https://www.flaticon.com/authors/pause08
-[flaticon]: https://www.flaticon.com
-[fl]: https://www.freepikcompany.com/legal#nav-flaticon-agreement
