@@ -1,7 +1,7 @@
 module vtpcache
 
 import crypto.md5 { hexhash }
-import time { Duration, Time, now, millisecond }
+import time { Duration, Time, now }
 
 
 fn repr(key string) string {
@@ -15,14 +15,14 @@ struct TLease {
 
 mut:
 	expire_in   Duration
-	expire_time u64
+	expire_time i64
 }
 
 pub fn (l TLease) get_content() string {
 	return l.content
 }
 
-pub fn (l TLease) get_expire_time() u64 {
+pub fn (l TLease) get_expire_time() i64 {
 	return l.expire_time
 }
 

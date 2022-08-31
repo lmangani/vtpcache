@@ -1,7 +1,6 @@
-// vi: ft=vlang
 module main
 
-import time { second }
+import time
 import vtpcache { vtpcache_new, TCatalog }
 
 
@@ -13,8 +12,8 @@ fn main() {
 	mut lease := mm.retrieve('my key') or { panic(err) }
 	if lease.is_expired() {
 
-		lease.must_expire_in(5 * second)
-		mm.renew(mut lease, data)
+		lease.must_expire_in(5 * time.second)?
+		mm.renew(mut lease, data)?
 	}
 
 	println(lease.get_content())
