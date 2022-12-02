@@ -27,7 +27,7 @@
 Via VPM:
 
 ```
-v install caiertl.vtpcache
+v install lmangani.vtpcache
 ```
 
 
